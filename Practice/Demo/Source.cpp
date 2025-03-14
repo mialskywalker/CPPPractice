@@ -2,24 +2,30 @@
 
 using namespace std;
 
-struct Container {
+class Dog {
+public:
 	string Name;
+	int Age;
+	float Health;
 
-	int X;
-	int Y;
-	int Z;
+	Dog(string name, int age, float health) {
+		Name = name;
+		Age = age;
+		Health = health;
+	}
+
+
+
+	void Bark() {
+		cout << "Woof!" << endl;
+	}
 };
 
 int main() {
 	
-	
-	Container container = { "Sam", 5, 6, 7 };
+	Dog dog = Dog("Vasil", 25, 1);
 
-	Container* PtrToCont = &container;
-
-
-	cout << (*PtrToCont).Name << endl;
-	cout << PtrToCont->Name << endl;
+	cout << dog.Name << ' ' << dog.Age << ' ' << dog.Health << endl;
 
 	system("pause");
 }
