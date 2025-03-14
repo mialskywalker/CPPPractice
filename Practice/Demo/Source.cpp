@@ -2,31 +2,64 @@
 
 using namespace std;
 
-class Dog {
+class Animal {
 public:
+	Animal();
+	Animal(string name, int age, int numberOfLimbs);
+
 	string Name;
 	int Age;
-	float Health;
+	int NumberOfLimbs;
 
-	Dog(string name, int age, float health) {
-		Name = name;
-		Age = age;
-		Health = health;
-	}
+	void Report();
+};
 
+class Dog : public Animal {
+public:
+	Dog();
+	Dog(string name, int age, int numberOfLimbs);
 
+	void Speak();
+};
 
-	void Bark() {
-		cout << "Woof!" << endl;
-	}
+class Corgi : public Dog {
+
 };
 
 int main() {
-	
-	Dog dog = Dog("Vasil", 25, 1);
 
-	cout << dog.Name << ' ' << dog.Age << ' ' << dog.Health << endl;
+	Corgi corgi;
+	corgi.Speak();
 
 	system("pause");
 }
 
+Animal::Animal() {
+	cout << "An ANIMAL is born!\n";
+
+	Name = "DEFAULT";
+	Age = 2;
+	NumberOfLimbs = 4;
+}
+
+Animal::Animal(string name, int age, int numberOfLimbs) : Name(name), Age(age), NumberOfLimbs(numberOfLimbs) {
+	Report();
+}
+
+void Animal::Report() {
+	cout << endl;
+	cout << "Name: " << Name << endl;
+	cout << "Age: " << Age << endl;
+	cout << "Number of limbs: " << NumberOfLimbs << endl;
+	cout << endl;
+}
+
+Dog::Dog() {
+	cout << "A DOG is born!\n";
+}
+
+Dog::Dog(string name, int age, int numberOfLimbs) : Animal(name, age, numberOfLimbs) {}
+
+void Dog::Speak() {
+	cout << "Woof!" << endl;
+}
