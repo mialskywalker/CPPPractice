@@ -25,8 +25,20 @@ int main() {
 
 	Object* ObjectArray[] = { ptr_to_object, ptr_to_actor, ptr_to_pawn };
 
-	for (int i = 0; i < 3; i++)
-		ObjectArray[i]->BeginPlay();
+	for (int i = 0; i < 3; i++) {
+		Object* obj = ObjectArray[i];
+		Actor* act = dynamic_cast<Actor*>(obj);
+		if (act)
+		{
+			act->BeginPlay();
+		}
+		Pawn* pwn = dynamic_cast<Pawn*>(obj);
+		if (pwn)
+		{
+			pwn->BeginPlay();
+		}
+
+	}
 
 	delete ptr_to_object;
 	delete ptr_to_actor;
