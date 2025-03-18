@@ -2,29 +2,40 @@
 
 using namespace std;
 
-class Item {
+class Object {
 public:
-	Item() {
-		cout << "An item has been created!\n";
-	}
-	~Item() {
-		cout << "An item has been destroyed!\n";
+	virtual void BeginPlay() {
+		cout << "Object BeginPlay() called.\n";
 	}
 };
 
-void AddToCount() {
-	static int count = 0;
-	count++;
-	cout << count << endl;
-}
+class Actor : public Object {
+public:
+	virtual void BeginPlay() override {
+		cout << "Actor BeginPlay() called.\n";
+	}
+};
+
+
+class Pawn : public Actor {
+public:
+	virtual void BeginPlay() override {
+		cout << "Pawn BeginPlay() called.\n";
+	}
+};
 
 int main() {
+	Object* obj = new Object;
+	obj->BeginPlay();
 
-	AddToCount();
-	AddToCount();
-	{
-		static Item item;
-	}
+	Actor* act = new Actor;
+	act->BeginPlay();
 
+	Pawn* pwn = new Pawn;
+	pwn->BeginPlay();
+
+	delete obj;
+	delete act;
+	delete pwn;
 	system("pause");
 }
