@@ -2,64 +2,29 @@
 
 using namespace std;
 
-class Animal {
+class Item {
 public:
-	Animal();
-	Animal(string name, int age, int numberOfLimbs);
-
-	string Name;
-	int Age;
-	int NumberOfLimbs;
-
-	void Report();
+	Item() {
+		cout << "An item has been created!\n";
+	}
+	~Item() {
+		cout << "An item has been destroyed!\n";
+	}
 };
 
-class Dog : public Animal {
-public:
-	Dog();
-	Dog(string name, int age, int numberOfLimbs);
-
-	void Speak();
-};
-
-class Corgi : public Dog {
-
-};
+void AddToCount() {
+	static int count = 0;
+	count++;
+	cout << count << endl;
+}
 
 int main() {
 
-	Corgi corgi;
-	corgi.Speak();
+	AddToCount();
+	AddToCount();
+	{
+		static Item item;
+	}
 
 	system("pause");
-}
-
-Animal::Animal() {
-	cout << "An ANIMAL is born!\n";
-
-	Name = "DEFAULT";
-	Age = 2;
-	NumberOfLimbs = 4;
-}
-
-Animal::Animal(string name, int age, int numberOfLimbs) : Name(name), Age(age), NumberOfLimbs(numberOfLimbs) {
-	Report();
-}
-
-void Animal::Report() {
-	cout << endl;
-	cout << "Name: " << Name << endl;
-	cout << "Age: " << Age << endl;
-	cout << "Number of limbs: " << NumberOfLimbs << endl;
-	cout << endl;
-}
-
-Dog::Dog() {
-	cout << "A DOG is born!\n";
-}
-
-Dog::Dog(string name, int age, int numberOfLimbs) : Animal(name, age, numberOfLimbs) {}
-
-void Dog::Speak() {
-	cout << "Woof!" << endl;
 }
